@@ -1,9 +1,8 @@
 <?php
 /**
- * API framework front controller.
  * 
- * @package api-framework
- * @author  Martin Bean <martin@martinbean.co.uk>
+ * @package phpRestful
+ * @author  Jonathan Sommer
  */
 
 /**
@@ -37,7 +36,11 @@ spl_autoload_register('autoload_class');
 $request = new Request();
 if (isset($_SERVER['PATH_INFO'])) {
     $request->url_elements = explode('/', trim($_SERVER['PATH_INFO'], '/'));
+    foreach ($request->url_elements as $key => $element){
+        $request->elements[$key] = explode('-', trim($element, '-'));
+    }
 }
+
 $request->method = strtoupper($_SERVER['REQUEST_METHOD']);
 switch ($request->method) {
     case 'GET':

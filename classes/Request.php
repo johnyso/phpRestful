@@ -1,7 +1,7 @@
 <?php
 /**
  * Request class.
- * 
+ *
  * @package api-framework
  * @author  Martin Bean <martin@martinbean.co.uk>
  */
@@ -27,4 +27,11 @@ class Request
      * @var array
      */
     public $parameters;
+
+    /**
+     * URL Elements with id
+     *
+     * @var array
+     */
+    public $elements;
 }
