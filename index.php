@@ -6,7 +6,7 @@
  */
 
 /**
- * Generic class autoloader.
+ * autoLoader for added classes
  * 
  * @param string $class_name
  */
@@ -57,16 +57,22 @@ switch ($request->method) {
 /**
  * Route the request.
  */
-if (!empty($request->url_elements)) {
-    $controller_name = ucfirst($request->url_elements[0]) . 'Controller';
+if (!empty($request->elements)) {
+
+
+    foreach ($request->elements as $key => $element) {
+        $controller_name = ucfirst($element[0]) . 'Controller';
+        if (! class_exists($controller_name)) {
+            header('HTTP/1.1 404 Not Found');
+            $response_str = 'Unknown request: ' . $element[0];
+        }
+        $countElements = $key;
+    }
+    $controller_name = ucfirst($request->elements[$countElements][0]) . 'Controller';
     if (class_exists($controller_name)) {
         $controller = new $controller_name;
         $action_name = strtolower($request->method);
         $response_str = call_user_func_array(array($controller, $action_name), array($request));
-    }
-    else {
-        header('HTTP/1.1 404 Not Found');
-        $response_str = 'Unknown request: ' . $request->url_elements[0];
     }
 }
 else {

@@ -1,10 +1,5 @@
 <?php
-/**
- * Sample news controller.
- * 
- * @package api-framework
- * @author  Martin Bean <martin@martinbean.co.uk>
- */
+
 class NewsController extends AbstractController
 {
     /**
@@ -23,7 +18,7 @@ class NewsController extends AbstractController
     public function get($request)
     {
         $articles = $this->readArticles();
-        switch (count($request->url_elements)) {
+        switch (count($request->elements)) {
             case 1:
                 return $articles;
             break;
