@@ -8,7 +8,17 @@ class NewsController extends AbstractController
      * @var variable type
      */
     protected $articles_file = './data/news.txt';
-    
+
+    /**
+     * resources for manual alignment.
+     *
+     * @var variable type
+     */
+    protected $left = "left";
+    protected $right = "right";
+    protected $up = "up";
+    protected $down = "down";
+
     /**
      * GET method.
      * 
@@ -19,7 +29,7 @@ class NewsController extends AbstractController
     {
         $articles = $this->readArticles();
         $count = count($request->elements)-1;
-        switch (count($request->elements[$count])) {
+        switch (count($request->elements[0])) {
             case 1:
                 return $articles;
             break;
@@ -29,7 +39,37 @@ class NewsController extends AbstractController
             break;
         }
     }
-    
+
+    /**
+     * PUT method.
+     *
+     * @param  Request $request
+     * @return string
+     */
+    public function put($request){
+        switch ($request->elements[1][0]){
+            case $this->left:
+                var_dump("Resource: " . $this->left . " degree " . $request->elements[1][1]);
+                break;
+            case $this->right:
+                var_dump("Resource: " . $this->right . " degree " . $request->elements[1][1]);
+                break;
+            case $this->up:
+                var_dump("Resource: " . $this->up . " degree " . $request->elements[1][1]);
+                break;
+            case $this->down:
+                var_dump("Resource: " . $this->down . " degree " . $request->elements[1][1]);
+                break;
+            default:
+                header('HTTP/1.1 404 Not Found');
+                return 'Unknown request: ' . $request->elements[1][0];
+        }
+/*        switch (count($request->elements[0])) {
+
+        }
+*/
+    }
+
     /**
      * Read articles.
      *

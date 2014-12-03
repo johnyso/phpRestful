@@ -59,7 +59,6 @@ switch ($request->method) {
  */
 if (!empty($request->elements)) {
 
-
     foreach ($request->elements as $key => $element) {
         $controller_name = ucfirst($element[0]) . 'Controller';
         if (! class_exists($controller_name)) {
@@ -68,7 +67,7 @@ if (!empty($request->elements)) {
         }
         $countElements = $key;
     }
-    $controller_name = ucfirst($request->elements[$countElements][0]) . 'Controller';
+    $controller_name = ucfirst($request->elements[0][0]) . 'Controller';
     if (class_exists($controller_name)) {
         $controller = new $controller_name;
         $action_name = strtolower($request->method);
