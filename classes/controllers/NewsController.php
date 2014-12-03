@@ -50,9 +50,11 @@ class NewsController extends AbstractController
         switch ($request->elements[1][0]){
             case $this->left:
                 var_dump("Resource: " . $this->left . " degree " . $request->elements[1][1]);
+                $val = trim(@shell_exec("/usr/local/bin/gpio -g write 16 1"));
                 break;
             case $this->right:
                 var_dump("Resource: " . $this->right . " degree " . $request->elements[1][1]);
+                $val = trim(@shell_exec("/usr/local/bin/gpio -g write 16 0"));
                 break;
             case $this->up:
                 var_dump("Resource: " . $this->up . " degree " . $request->elements[1][1]);
