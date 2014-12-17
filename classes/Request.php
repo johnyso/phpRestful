@@ -34,4 +34,10 @@ class Request
      * @var array
      */
     public $elements;
+
+    public static function executeStepper($direction, $degree){
+        // make execution
+        echo "direcion: " . $direction;
+        echo "steps: " . $degree;
+    }
 }
