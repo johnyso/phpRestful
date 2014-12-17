@@ -24,8 +24,7 @@ class HorizontalController extends AbstractController
                 return "get horizontal alignment";
                 break;
             case 2:
-                $request->executeStepper(0, $degree);
-
+                $request->executeStepperDegree(0,$degree);
                 return "go to position ". $degree;
                 break;
         }
