@@ -37,7 +37,10 @@ class Request
 
     public static function executeStepper($direction, $degree){
         // make execution
-        echo "direcion: " . $direction;
-        echo "steps: " . $degree;
+        if(!$_SERVER['REMOTE_ADDR'] = "http://restful.local"){
+            shell_exec("nodeStepper 5000000 " . $degree . " " . $direction ." 42 41 44 43");
+        } else {
+            echo ("nodeStepper 5000000 " . $degree . " " . $direction ." 42 41 44 43");
+        }
     }
 }
