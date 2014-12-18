@@ -66,7 +66,6 @@ class Request
 
     public function executeStepperDegree($motor, $degree)
     {
-var_dump("Deg: " + $degree);
         // For Horizontal Motor
         if ($motor == 0 && $degree <= 180 && $degree >= 0) {
             $currentPos = $this->getPosition($motor);
@@ -88,13 +87,15 @@ var_dump("Deg: " + $degree);
             if ($currentPos > $degree) {
                 $steps = $currentPos - (int)$degree;
                 echo "Steps: " . $steps;
-                shell_exec("nodeStepper" . $this->speed . ($steps * $this->$verticalDegree) . " " . 0 . $this->stepperVertical);
                 $this->writePosition($motor, $degree);
+                shell_exec("nodeStepper" . $this->speed . ($steps * $this->$verticalDegree) . " " . 0 . $this->stepperVertical);
+
             } else if ($currentPos < $degree) {
                 $steps = (int)$degree - $currentPos;
                 echo "Steps: " . $steps;
-                shell_exec("nodeStepper" . $this->speed . ($steps * $this->$verticalDegree) . " " . 1 . $this->stepperVertical);
                 $this->writePosition($motor, $degree);
+                shell_exec("nodeStepper" . $this->speed . ($steps * $this->$verticalDegree) . " " . 1 . $this->stepperVertical);
+
             }
         }
 
@@ -111,8 +112,9 @@ var_dump("Deg: " + $degree);
             while (($line = fgets($fileX)) !== false) {
                 $strings = explode("-", $line);
                 $position = $strings[1];
-                return $position;
             }
+            return $position;
+            fclose($fileX);
             fclose($file);
         }
     }
@@ -126,7 +128,8 @@ var_dump("Deg: " + $degree);
     public function getFile($motor) {
         if($motor == 0) {
             return $this->hPosFile;
-        } elseif($motor == 1){
+        }
+        if($motor == 1){
             return $this->vPosFile;
         }
     }
