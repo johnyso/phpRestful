@@ -84,12 +84,12 @@ class Request
             if ($currentPos > $degree) {
                 $steps = $currentPos - (int)$degree;
                 $this->writePosition($motor, $degree);
-                shell_exec("nodeStepper" . $this->speed . ($steps * $this->$verticalDegree) . " " . 0 . $this->stepperVertical);
+                shell_exec("nodeStepper" . $this->speed . ($steps * $this->verticalDegree) . " " . 0 . $this->stepperVertical);
 
             } else if ($currentPos < $degree) {
                 $steps = (int)$degree - $currentPos;
                 $this->writePosition($motor, $degree);
-                shell_exec("nodeStepper" . $this->speed . ($steps * $this->$verticalDegree) . " " . 1 . $this->stepperVertical);
+                shell_exec("nodeStepper" . $this->speed . ($steps * $this->verticalDegree) . " " . 1 . $this->stepperVertical);
 
             }
         }
