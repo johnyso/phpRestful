@@ -59,7 +59,6 @@ class Request
             shell_exec("nodeStepper" . $this->speed . $degree . " " . $direction . $this->stepperHorizontal);
         } else {
             $currentPos = $this->getPosition(0);
-            var_dump("currentPos: " . $this->getPosition(0));
             //$this->writePosition(0,(int)$currentPos - (int)$degree);
         }
     }
