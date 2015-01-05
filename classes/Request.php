@@ -48,7 +48,7 @@ class Request
     public $horizontalDegree = 1;
 
     //Motor 1
-    public $stepperVertical = " 1 2 19 0 ";
+    public $stepperVertical = " 2 19 18 40 ";
 
     public $verticalDegree = 1;
 
