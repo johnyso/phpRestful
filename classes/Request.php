@@ -45,12 +45,12 @@ class Request
     //Motor 0
     public $stepperHorizontal = " 42 41 44 43";
 
-    public $horizontalDegree = 1;
+    public $horizontalDegree = 0.5;
 
     //Motor 1
     public $stepperVertical = " 2 19 18 40 ";
 
-    public $verticalDegree = 1;
+    public $verticalDegree = 4;
 
     public function executeStepper($direction, $degree)
     {
@@ -71,12 +71,12 @@ class Request
             if ($currentPos > $degree) {
                 $steps = $currentPos - (int)$degree;
                 $this->writePosition($motor, $degree);
-                shell_exec("nodeStepper" . $this->speed . ($steps * $this->horizontalDegree) . " " . 0 . $this->stepperHorizontal);
+                shell_exec("nodeStepper" . $this->speed . (int)($steps * $this->horizontalDegree) . " " . 0 . $this->stepperHorizontal);
 
             } else if ($currentPos < $degree) {
                 $steps = (int)$degree - $currentPos;
                 $this->writePosition($motor, $degree);
-                shell_exec("nodeStepper" . $this->speed . ($steps * $this->horizontalDegree) . " " . 1 . $this->stepperHorizontal);
+                shell_exec("nodeStepper" . $this->speed . (int)($steps * $this->horizontalDegree) . " " . 1 . $this->stepperHorizontal);
 
             }
         } elseif ($motor == 1 && $degree <=80 && $degree >=0){
@@ -84,12 +84,12 @@ class Request
             if ($currentPos > $degree) {
                 $steps = $currentPos - (int)$degree;
                 $this->writePosition($motor, $degree);
-                shell_exec("nodeStepper" . $this->speed . ($steps * $this->verticalDegree) . " " . 0 . $this->stepperVertical);
+                shell_exec("nodeStepper" . $this->speed . (int)($steps * $this->verticalDegree) . " " . 1 . $this->stepperVertical);
 
             } else if ($currentPos < $degree) {
                 $steps = (int)$degree - $currentPos;
                 $this->writePosition($motor, $degree);
-                shell_exec("nodeStepper" . $this->speed . ($steps * $this->verticalDegree) . " " . 1 . $this->stepperVertical);
+                shell_exec("nodeStepper" . $this->speed . (int)($steps * $this->verticalDegree) . " " . 0 . $this->stepperVertical);
 
             }
         }
