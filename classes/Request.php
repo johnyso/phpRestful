@@ -45,12 +45,12 @@ class Request
     //Motor 0
     public $stepperHorizontal = " 42 41 44 43";
 
-    public $horizontalDegree = 0.5;
+    public $horizontalDegree = 0.1;
 
     //Motor 1
     public $stepperVertical = " 2 19 18 40 ";
 
-    public $verticalDegree = 4;
+    public $verticalDegree = 10;
 
     public function executeStepper($direction, $degree)
     {
